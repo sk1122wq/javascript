@@ -1,0 +1,15 @@
+<html>
+<head>
+<script>
+function submitForm() {
+  alert("onSubmit: Form submit ho gaya");
+  return false; // page reload rokne ke liye
+}
+</script>
+</head>
+<body>
+<form onsubmit="return submitForm()">
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
