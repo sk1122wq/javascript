@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Its about Temporal</title>
+</head>
+<body>
+    <h2>Add Tempral object in this profram </h2>
+    <p id="demo"></p>
+    <script>
+        const today=Temporal.Now.plainDateISO();
+        const nextweek=today.add({days:7});
+        document.getElementById("demo").innerHTML="Next Week is"+nextweek.toString();
+    </script>
+</body>
+</html>
