@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>immutable</title>
+
+</head>
+<body>
+    <h2> This is about the immutable</h2>
+    <p id="demo"></p>
+    <script>
+        const date1=Temporal.PlainDate.from("2026-05-17");
+        const date2=date1.add({days:7});
+        document.getElementById("demo").innerHTML=date1.toString()+"<br>"+date2.toString();
+    </script>
+</body>
+</html>
