@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    In JS, *"data fetch"* = getting data from an API / file / server. 
+
+Here are the 3 most common ways:
+
+### *1. Fetch API - Get data from a URL/REST API* 
+This is the modern way. Used for JSON APIs.
+// GET request
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+  .then(response => response.json()) // convert to JSON
+  .then(data => {
+    console.log("Data:", data);
+    console.log("Title:", data.title);
+  })
+  .catch(error => console.error("Error:", error));
+*With async/await - cleaner*
+async function getData() {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+    const data = await response.json();
+    console.log("Data:", data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+getData();
+*POST request - Send data*
+async function sendData() {
+  const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title: 'My Post',
+      body: 'Hello World',
+      userId: 1
+    })
+  });
+  const data = await response.json();
+  console.log(data);
+}
+---
+
+### *2. Fetch local JSON file*
+async function loadLocalFile() {
+  const response = await fetch('./data.json'); // file in same folder
+  const data = await response.json();
+  console.log(data);
+}
+`data.json` example:
+[
+  {"name": "Ali", "score": 90},
+  {"name": "Sara", "score": 85}
+]
+---
+
+### *3. Fetch from CSV and convert to array*
+async function fetchCSV() {
+  const response = await fetch('./data.csv');
+  const text = await response.text();
+  
+  const rows = text.split('\n').map(row => row.split(','));
+  console.log(rows); // [["name","score"],["Ali","90"]]
+}
+---
+
+### *4. Full Example: Fetch + Show in HTML*
+<!-- <!DOCTYPE html>
+<html>
+<body>
+  <ul id="userList"></ul>
+
+  <script>
+    async function fetchUsers() {
+      const res = await fetch('https://jsonplaceholder.typicode.com/users');
+      const users = await res.json();
+      
+      const list = document.getElementById('userList');
+      users.forEach(user => {
+        const li = document.createElement('li');
+        li.textContent = `${user.name} - ${user.email}`;
+        list.appendChild(li);
+      });
+    }
+    
+    fetchUsers();
+  </script>
+</body> -->
+</html>
+### *Key points*
+Method	Use Case
+`fetch(url)`	Get data from API
+`.json()`	Convert response to JS object
+`await`	Wait for data before continuing
+`try...catch`	Handle errors
+Want me to give you code to *fetch data and calculate mean, variance, std dev, linear regression* on it directly in JS?
+</body>
+</html>
